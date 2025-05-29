@@ -68,27 +68,65 @@ export default {
   		},
   		keyframes: {
   			'accordion-down': {
-  				from: {
-  					height: '0'
-  				},
-  				to: {
-  					height: 'var(--radix-accordion-content-height)'
-  				}
+  				from: { height: '0' },
+  				to: { height: 'var(--radix-accordion-content-height)' }
   			},
   			'accordion-up': {
-  				from: {
-  					height: 'var(--radix-accordion-content-height)'
-  				},
-  				to: {
-  					height: '0'
-  				}
-  			}
+  				from: { height: 'var(--radix-accordion-content-height)' },
+  				to: { height: '0' }
+  			},
+        'fade-in-right': {
+          '0%': { opacity: '0', transform: 'translateX(-20px)' },
+          '100%': { opacity: '1', transform: 'translateX(0)' },
+        },
+        'fade-in-left': {
+          '0%': { opacity: '0', transform: 'translateX(20px)' },
+          '100%': { opacity: '1', transform: 'translateX(0)' },
+        },
+        'fade-in-up': {
+          '0%': { opacity: '0', transform: 'translateY(20px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        'tilt': {
+          '0%, 50%, 100%': { transform: 'rotate(0deg)' },
+          '25%': { transform: 'rotate(0.5deg)' },
+          '75%': { transform: 'rotate(-0.5deg)' },
+        },
   		},
   		animation: {
   			'accordion-down': 'accordion-down 0.2s ease-out',
-  			'accordion-up': 'accordion-up 0.2s ease-out'
-  		}
+  			'accordion-up': 'accordion-up 0.2s ease-out',
+        'fade-in-right': 'fade-in-right 0.8s ease-out forwards',
+        'fade-in-left': 'fade-in-left 0.8s ease-out forwards',
+        'fade-in-up': 'fade-in-up 0.8s ease-out forwards',
+        'tilt': 'tilt 10s infinite linear',
+  		},
   	}
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [
+    require("tailwindcss-animate"),
+    function ({ addUtilities }: { addUtilities: any }) {
+      addUtilities({
+        '.custom-scrollbar::-webkit-scrollbar': {
+          width: '6px',
+          height: '6px',
+        },
+        '.custom-scrollbar::-webkit-scrollbar-track': {
+          background: 'hsl(var(--muted) / 0.5)',
+          'border-radius': '3px',
+        },
+        '.custom-scrollbar::-webkit-scrollbar-thumb': {
+          background: 'hsl(var(--primary) / 0.7)',
+          'border-radius': '3px',
+        },
+        '.custom-scrollbar::-webkit-scrollbar-thumb:hover': {
+          background: 'hsl(var(--primary))',
+        },
+        '.custom-scrollbar': {
+          'scrollbar-width': 'thin',
+          'scrollbar-color': 'hsl(var(--primary) / 0.7) hsl(var(--muted) / 0.5)',
+        },
+      });
+    },
+  ],
 } satisfies Config;
