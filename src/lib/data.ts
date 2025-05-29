@@ -1,5 +1,6 @@
+import type { LucideIcon as LucideIconType } from 'lucide-react';
+// Keep direct imports for sectionIconMapping as it's used server-side directly
 import { Briefcase, Code2, Database, Download, ExternalLink, Github, GraduationCap, Linkedin, Mail, MapPin, Phone, Presentation, Server, Smartphone, Sparkles, Star, UserCheck, Users, Wrench, Zap } from 'lucide-react';
-import type { LucideIcon } from 'lucide-react';
 
 export interface NavItem {
   label: string;
@@ -23,37 +24,42 @@ export const personalInfo = {
   location: 'Indore, India',
   linkedin: 'https://linkedin.com/in/sourabh-patidar',
   objective: "Experienced Associate Software Engineer with 2.6+ years of professional experience in full-stack web and mobile application development. Proficient in React.js, React Native, and Swift, with a strong foundation in building scalable, user-centric applications across platforms. Passionate about creating impactful digital experiences and continuously learning new technologies. Actively seeking a full-time role in a forward-thinking team where I can contribute my technical expertise, problem-solving skills, and dedication to product excellence.",
-  resumeUrl: '/Sourabh_Patidar_Resume.pdf', // Placeholder, create this PDF in /public
-  headshotUrl: 'https://placehold.co/400x400.png', // Placeholder for headshot
+  resumeUrl: '/Sourabh_Patidar_Resume.pdf',
+  headshotUrl: 'https://placehold.co/400x400.png',
   headshotAiHint: 'professional man',
 };
 
+// Using string type for iconName for flexibility, can be tightened with keyof typeof LucideIcons if needed
+// and all icons are guaranteed to exist. For now, components will handle missing icons.
+type IconName = keyof typeof import('lucide-react');
+
+
 export interface Skill {
   name: string;
-  level: number; // Proficiency level 0-100
-  icon?: LucideIcon; // Optional: Lucide icon for the skill
+  level: number; 
+  iconName?: IconName; 
   category: 'Frontend' | 'Backend' | 'Mobile' | 'Database' | 'Tools' | 'Frameworks' | 'Other';
 }
 
 export const skills: Skill[] = [
-  { name: 'HTML5', level: 95, icon: Code2, category: 'Frontend' },
-  { name: 'CSS3', level: 90, icon: Code2, category: 'Frontend' },
-  { name: 'JavaScript', level: 90, icon: Code2, category: 'Frontend' },
-  { name: 'React.js', level: 90, icon: Zap, category: 'Frontend' },
-  { name: 'Next.js', level: 85, icon: Zap, category: 'Frontend' },
-  { name: 'React Native (Expo)', level: 85, icon: Smartphone, category: 'Mobile' },
-  { name: 'Swift (iOS)', level: 75, icon: Smartphone, category: 'Mobile' },
-  { name: 'Node.js', level: 80, icon: Server, category: 'Backend' },
-  { name: 'Express.js', level: 80, icon: Server, category: 'Backend' },
-  { name: 'Shopify', level: 70, icon: Code2, category: 'Other' },
-  { name: 'MySQL', level: 75, icon: Database, category: 'Database' },
-  { name: 'MongoDB', level: 80, icon: Database, category: 'Database' },
-  { name: 'Git', level: 90, icon: Github, category: 'Tools' },
-  { name: 'Xcode', level: 70, icon: Wrench, category: 'Tools' },
-  { name: 'VSCode', level: 95, icon: Wrench, category: 'Tools' },
-  { name: 'Postman', level: 85, icon: Wrench, category: 'Tools' },
-  { name: 'Bootstrap', level: 85, icon: Code2, category: 'Frameworks' },
-  { name: 'Tailwind CSS', level: 90, icon: Code2, category: 'Frameworks' },
+  { name: 'HTML5', level: 95, iconName: 'Code2', category: 'Frontend' },
+  { name: 'CSS3', level: 90, iconName: 'Code2', category: 'Frontend' },
+  { name: 'JavaScript', level: 90, iconName: 'Code2', category: 'Frontend' },
+  { name: 'React.js', level: 90, iconName: 'Zap', category: 'Frontend' },
+  { name: 'Next.js', level: 85, iconName: 'Zap', category: 'Frontend' },
+  { name: 'React Native (Expo)', level: 85, iconName: 'Smartphone', category: 'Mobile' },
+  { name: 'Swift (iOS)', level: 75, iconName: 'Smartphone', category: 'Mobile' },
+  { name: 'Node.js', level: 80, iconName: 'Server', category: 'Backend' },
+  { name: 'Express.js', level: 80, iconName: 'Server', category: 'Backend' },
+  { name: 'Shopify', level: 70, iconName: 'Code2', category: 'Other' },
+  { name: 'MySQL', level: 75, iconName: 'Database', category: 'Database' },
+  { name: 'MongoDB', level: 80, iconName: 'Database', category: 'Database' },
+  { name: 'Git', level: 90, iconName: 'Github', category: 'Tools' },
+  { name: 'Xcode', level: 70, iconName: 'Wrench', category: 'Tools' },
+  { name: 'VSCode', level: 95, iconName: 'Wrench', category: 'Tools' },
+  { name: 'Postman', level: 85, iconName: 'Wrench', category: 'Tools' },
+  { name: 'Bootstrap', level: 85, iconName: 'Code2', category: 'Frameworks' },
+  { name: 'Tailwind CSS', level: 90, iconName: 'Code2', category: 'Frameworks' },
 ];
 
 export interface Project {
@@ -75,7 +81,7 @@ export const projects: Project[] = [
     techStack: ['Next.js', 'Node.js', 'Bootstrap'],
     imageUrl: 'https://placehold.co/600x400.png',
     imageAiHint: 'ecommerce website',
-    liveLink: '#', // Placeholder
+    liveLink: '#', 
   },
   {
     id: 'vinyasa',
@@ -97,7 +103,7 @@ export const projects: Project[] = [
     id: 'wealthcon',
     title: 'Wealthcon App',
     description: 'An educational web app for students to watch video lectures, read articles, and access newsletters. Includes an admin panel for content management.',
-    techStack: ['React.js', 'Node.js'], // Assuming MERN stack based on internship
+    techStack: ['React.js', 'Node.js'], 
     imageUrl: 'https://placehold.co/600x400.png',
     imageAiHint: 'education platform',
   },
@@ -105,7 +111,7 @@ export const projects: Project[] = [
     id: 'nps-overview',
     title: 'NPS Overview App',
     description: 'A customer feedback app integrated with Shopify. Automates post-delivery WhatsApp messages for ratings and visualizes data on a dashboard.',
-    techStack: ['Shopify', 'Node.js', 'React.js'], // Assuming a dashboard implies frontend
+    techStack: ['Shopify', 'Node.js', 'React.js'], 
     imageUrl: 'https://placehold.co/600x400.png',
     imageAiHint: 'dashboard chart',
   },
@@ -116,8 +122,8 @@ export interface Experience {
   company: string;
   period: string;
   location: string;
-  description?: string; // Optional: if you want to add bullet points later
-  icon?: LucideIcon;
+  description?: string; 
+  iconName?: IconName;
 }
 
 export const experiences: Experience[] = [
@@ -126,7 +132,7 @@ export const experiences: Experience[] = [
     company: 'Techinfini solutions Pvt,Ltd',
     period: 'Oct 2022 - Current',
     location: 'VijayNagar, Scheme No 54, Indore, (M.P.)',
-    icon: Briefcase,
+    iconName: 'Briefcase',
   },
 ];
 
@@ -135,7 +141,7 @@ export interface EducationItem {
   institution: string;
   period: string;
   location: string;
-  icon?: LucideIcon;
+  iconName?: IconName;
 }
 
 export const education: EducationItem[] = [
@@ -144,44 +150,52 @@ export const education: EducationItem[] = [
     institution: 'JIT college borawan',
     period: '2020 - 2022',
     location: 'Khargone (M.P.)',
-    icon: GraduationCap,
+    iconName: 'GraduationCap',
   },
   {
     degree: 'Bachelor of Computer Science',
     institution: 'Govt. Pg college Khargone',
     period: '2016 - 2020',
     location: 'Khargone (M.P.)',
-    icon: GraduationCap,
+    iconName: 'GraduationCap',
   },
 ];
 
 export interface Activity {
   title: string;
   description: string;
-  icon?: LucideIcon;
+  iconName?: IconName;
 }
 
 export const extracurricularActivities: Activity[] = [
   {
     title: 'MERN Stack Internship',
     description: 'Successfully completed a six-month internship in MERN stack development at Ypsilon IT Solutions Pvt Ltd. Gained hands-on experience and contributed to a Student Management System project, building a solid foundation in modern web development.',
-    icon: Star,
+    iconName: 'Star',
   },
   {
     title: 'Innovate India Coding Championship',
     description: 'Completed the Innovate India Coding Championship hosted by Coding Ninja, showcasing proficiency in advanced coding challenges and algorithmic problem-solving. Highlights dedication to continuous learning and strong programming skills.',
-    icon: Sparkles,
+    iconName: 'Sparkles',
   },
 ];
 
-export const contactMethods = [
-  { label: 'Email', value: personalInfo.email, href: `mailto:${personalInfo.email}`, icon: Mail },
-  { label: 'Phone', value: personalInfo.phone, href: `tel:${personalInfo.phone}`, icon: Phone },
-  { label: 'LinkedIn', value: 'linkedin.com/in/sourabh-patidar', href: personalInfo.linkedin, icon: Linkedin },
-  { label: 'Location', value: personalInfo.location, icon: MapPin },
+interface ContactMethod {
+  label: string;
+  value: string;
+  href?: string;
+  iconName: IconName;
+}
+
+export const contactMethods: ContactMethod[] = [
+  { label: 'Email', value: personalInfo.email, href: `mailto:${personalInfo.email}`, iconName: 'Mail' },
+  { label: 'Phone', value: personalInfo.phone, href: `tel:${personalInfo.phone}`, iconName: 'Phone' },
+  { label: 'LinkedIn', value: 'linkedin.com/in/sourabh-patidar', href: personalInfo.linkedin, iconName: 'Linkedin' },
+  { label: 'Location', value: personalInfo.location, iconName: 'MapPin' },
 ];
 
-export const sectionIconMapping: { [key: string]: LucideIcon } = {
+// sectionIconMapping is used by Server Components, passing components directly is fine here.
+export const sectionIconMapping: { [key: string]: LucideIconType } = {
   about: UserCheck,
   projects: Presentation,
   skills: Zap,
@@ -190,4 +204,3 @@ export const sectionIconMapping: { [key: string]: LucideIcon } = {
   extra: Sparkles,
   contact: Users,
 };
-

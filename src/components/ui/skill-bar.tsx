@@ -5,9 +5,11 @@ import { useEffect, useState, useRef } from 'react';
 import { Progress } from '@/components/ui/progress';
 import type { Skill } from '@/lib/data';
 import { motion, useAnimation, useInView } from "framer-motion";
+import * as LucideIcons from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
 
 interface SkillBarProps {
-  skill: Skill;
+  skill: Skill; // Skill type already updated in data.ts to use iconName
 }
 
 export function SkillBar({ skill }: SkillBarProps) {
@@ -26,12 +28,13 @@ export function SkillBar({ skill }: SkillBarProps) {
     }
   }, [inView, controls, skill.level]);
 
+  const IconComponent = skill.iconName ? LucideIcons[skill.iconName as keyof typeof LucideIcons] as LucideIcon : null;
 
   return (
     <div ref={ref} className="mb-4 group">
       <div className="flex justify-between items-center mb-1">
         <div className="flex items-center">
-          {skill.icon && <skill.icon className="h-5 w-5 mr-2 text-primary group-hover:text-accent transition-colors" />}
+          {IconComponent && <IconComponent className="h-5 w-5 mr-2 text-primary group-hover:text-accent transition-colors" />}
           <span className="text-sm font-medium text-foreground">{skill.name}</span>
         </div>
         <span className="text-xs font-semibold text-primary group-hover:text-accent transition-colors">

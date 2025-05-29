@@ -18,7 +18,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { Loader2, Send } from "lucide-react";
 import { useState } from "react";
-import { submitContactForm, type ContactFormValues, ContactFormValuesSchema } from "@/app/actions/contact-actions";
+import { submitContactForm } from "@/app/actions/contact-actions";
+import { type ContactFormValues, ContactFormValuesSchema } from "@/lib/form-schemas";
 
 export function ContactForm() {
   const { toast } = useToast();
