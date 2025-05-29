@@ -37,7 +37,7 @@ export function SkillsSection() {
                 {category}
               </TabsTrigger>
             ))}
-          </TabsList
+          </TabsList>
 
           {sortedCategories.map((category) => (
             <TabsContent key={category} value={category}>

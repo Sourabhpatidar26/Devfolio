@@ -1,9 +1,9 @@
+
 // @/components/sections/contact-form.tsx
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import * as z from "zod";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -18,40 +18,14 @@ import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { Loader2, Send } from "lucide-react";
 import { useState } from "react";
-
-// Server action (dummy for now)
-async function submitContactForm(data: ContactFormValues): Promise<{ success: boolean; message: string }> {
-  "use server";
-  console.log("Form data submitted:", data);
-  // Simulate API call
-  await new Promise(resolve => setTimeout(resolve, 1000));
-  // For now, always return success. In a real app, you'd handle actual submission.
-  return { success: true, message: "Your message has been sent successfully! I'll get back to you soon." };
-}
-
-
-const formSchema = z.object({
-  name: z.string().min(2, {
-    message: "Name must be at least 2 characters.",
-  }),
-  email: z.string().email({
-    message: "Please enter a valid email address.",
-  }),
-  message: z.string().min(10, {
-    message: "Message must be at least 10 characters.",
-  }).max(500, {
-    message: "Message must not exceed 500 characters.",
-  }),
-});
-
-export type ContactFormValues = z.infer<typeof formSchema>;
+import { submitContactForm, type ContactFormValues, ContactFormValuesSchema } from "@/app/actions/contact-actions";
 
 export function ContactForm() {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const form = useForm<ContactFormValues>({
-    resolver: zodResolver(formSchema),
+    resolver: zodResolver(ContactFormValuesSchema),
     defaultValues: {
       name: "",
       email: "",
@@ -67,7 +41,7 @@ export function ContactForm() {
         toast({
           title: "Message Sent!",
           description: result.message,
-          variant: "default", // Use default for success, not primary
+          variant: "default", 
         });
         form.reset();
       } else {

@@ -1,4 +1,4 @@
-import { Briefcase, Code2, Database, Download, ExternalLink, Github, GraduationCap, Linkedin, Mail, MapPin, Phone, Presentation, Server, Smartphone, Sparkles, Star, Tool, UserCheck, Users, Zap } from 'lucide-react';
+import { Briefcase, Code2, Database, Download, ExternalLink, Github, GraduationCap, Linkedin, Mail, MapPin, Phone, Presentation, Server, Smartphone, Sparkles, Star, UserCheck, Users, Wrench, Zap } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 
 export interface NavItem {
@@ -49,9 +49,9 @@ export const skills: Skill[] = [
   { name: 'MySQL', level: 75, icon: Database, category: 'Database' },
   { name: 'MongoDB', level: 80, icon: Database, category: 'Database' },
   { name: 'Git', level: 90, icon: Github, category: 'Tools' },
-  { name: 'Xcode', level: 70, icon: Tool, category: 'Tools' },
-  { name: 'VSCode', level: 95, icon: Tool, category: 'Tools' },
-  { name: 'Postman', level: 85, icon: Tool, category: 'Tools' },
+  { name: 'Xcode', level: 70, icon: Wrench, category: 'Tools' },
+  { name: 'VSCode', level: 95, icon: Wrench, category: 'Tools' },
+  { name: 'Postman', level: 85, icon: Wrench, category: 'Tools' },
   { name: 'Bootstrap', level: 85, icon: Code2, category: 'Frameworks' },
   { name: 'Tailwind CSS', level: 90, icon: Code2, category: 'Frameworks' },
 ];
@@ -190,3 +190,4 @@ export const sectionIconMapping: { [key: string]: LucideIcon } = {
   extra: Sparkles,
   contact: Users,
 };
+
